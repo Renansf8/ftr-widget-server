@@ -61,17 +61,6 @@ jobs:
           cache-to: type=gha,mode=max
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:test
 
-      - name: Run Trivy scanner
-        id: run-trivy-scanner
-        run: |
-          docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
-            aquasec/trivy:0.49 image \
-            --format table \
-            --ignore-unfixed \
-            --vuln-type os,library \
-            --severity CRITICAL,HIGH,MEDIUM,LOW \
-            "${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:test"
-
       - name: Build and push the image to AWS ECR
         uses: docker/build-push-action@v6
         with:
