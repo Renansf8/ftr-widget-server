@@ -65,7 +65,7 @@ jobs:
         id: run-trivy-scanner
         uses: aquasecurity/trivy-action@0.29.0
         with:
-          image-ref: "${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:test"
+          image-ref: "docker://${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:test"
           format: "table"
           ignore-unfixed: true
           vuln-type: "os,library"
