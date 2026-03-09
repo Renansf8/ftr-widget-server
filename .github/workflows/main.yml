@@ -81,7 +81,7 @@ jobs:
         id: deploy-ecs
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
-          task-definition: ${{ steps.render-task-definition.outputs.task-definition-json }}
+          task-definition: ${{ steps.render-task-definition.outputs.task-definition }}
           service: rocketseat-widget-server-service-qfieke4s
           cluster: rocketseat-ecs-full
           wait-for-service-stability: true
